@@ -11,6 +11,7 @@ from streamlit_folium import st_folium
 store_list_2 = ['Cineplex', 'Ardene', 'Safeway', "Urban Planet", "Dollarama"]
 store_list = ['Cineplex', 'Safeway', "Dollarama"]
 STORE_LOCS = 'geodata/mall_data.geojson'
+reverse_antpath = False
 
 SPM_Location = (53.53096649685565, -113.2936327376925)
 map_SPM = folium.Map(location = SPM_Location, width = "100%", zoom_start = 17) # max zoom: 18
@@ -47,19 +48,19 @@ for feature in filtered_features:
 
 
 # render path
-testGeoJson = 'geodata/paths/' + option_start.replace(" ", "") + '_' + option_end.replace(" ", "") + '.geojson'
+path_file = 'geodata/paths/' + option_start.replace(" ", "") + '_' + option_end.replace(" ", "") + '.geojson'
 
 def switchPosition(coordinate):
     coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
     return coordinate
 
-with open(testGeoJson) as f:
+with open(path_file) as f:
   testWay = json.load(f)
 
 for feature in testWay['features']:
     path = feature['geometry']['coordinates']
 finalPath = list(map(switchPosition, path))
-
+finalPath.reverse()
 folium.plugins.AntPath(finalPath).add_to(map_SPM)
 
 # call to render Folium map in Streamlit
