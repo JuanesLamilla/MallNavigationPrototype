@@ -8,7 +8,7 @@ import json
 
 from streamlit_folium import st_folium
 
-STORE_LIST = ['Cineplex', 'Food Court', 'Safeway', "Urban Planet", "Dollarama"]
+STORE_LIST = ['Cineplex', 'Ardene', 'Safeway', "Urban Planet", "Dollarama"]
 
 UMMlocation = (53.53096649685565, -113.2936327376925)
 map_UMM = folium.Map(location = UMMlocation, width = "100%", zoom_start = 17) # max zoom: 18
