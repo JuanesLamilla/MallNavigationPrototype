@@ -6,7 +6,6 @@ import streamlit as st
 import os
 import json
 
-import datetime
 from streamlit_folium import st_folium
 
 STORE_LIST = ['Cineplex', 'Food Court', 'Safeway', "Urban Planet", "Dollarama"]
@@ -33,4 +32,4 @@ option_end = st.selectbox(
 
 
 # call to render Folium map in Streamlit
-st_data = st_folium(map_UMM, width=400, height=800)
+st_data = st_folium(map_UMM, width=800, height=800)
