@@ -1,6 +1,4 @@
 import folium
-from folium import plugins
-import pandas as pd
 import streamlit as st
 import os
 import json
