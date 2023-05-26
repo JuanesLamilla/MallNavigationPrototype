@@ -1,0 +1,30 @@
+/*
+This query looks for given ways by ID to later download as a geojson file. This allows me to manually select the rooms/buildings I wish to include in the navigation system.
+
+*/
+[out:json][timeout:25];
+// gather results
+(
+  // query for Ways by ID
+  way(1097694035); // Cineplex
+  way(1104517685); // Dollarama
+  way(1084923076); // Safeway
+  way(1104517683); // Ardene
+  way(1095509468); // Urban Planet
+);
+// print results
+out body;
+>;
+out skel qt;
+
+/*
+If you wanted to get all the rooms/buildings within an area (such as the mall), you can use the code below. You would need to verify that the data inputted into OpenStreetMap is accurate and complete. Way ID: 23746373 represents the Sherwood Park Mall.
+
+[out:xml][timeout:90];
+area(23746373)->.searchArea;
+(
+  way["indoor"="room"](area.searchArea);
+);
+(._;>;);
+out meta;
+*/
