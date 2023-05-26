@@ -15,7 +15,7 @@ map_UMM = folium.Map(location = UMMlocation, width = "100%", zoom_start = 17) # 
 
 st.title('Mall Navigator Prototype :world_map: :shopping_bags:')
 st.caption('Choose a start and end location to show the best path through the mall to reach your destination.')
-st.caption('This proof of concept demonstrate how to use geojson, folium, and a streamlit to show dynamic geographic information on an interactive dashboard.')
+st.caption('This proof of concept demonstrate how to use geojson, folium, and a streamlit to show dynamic geographic information on an interactive dashboard. This page was created entirely in Python.')
 st.caption('Code can be found on [github](https://github.com/JuanesLamilla/MallNavigationPrototype). You can also check out my [portfolio](https://juaneslamilla.github.io/).')
 
 option_start = st.selectbox(
