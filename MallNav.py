@@ -30,9 +30,26 @@ option_end = st.selectbox(
     'Where would you like to go?',
     end_location)
 
+# render Stores on map
 folium.GeoJson(STORE_LOCS,
                tooltip=folium.GeoJsonTooltip(fields=['name'])
               ).add_to(map_SPM)
+
+# render path
+testGeoJson = 'geodata/paths/Cineplex_Safeway.geojson'
+
+def switchPosition(coordinate):
+    coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
+    return coordinate
+
+with open(testGeoJson) as f:
+  testWay = json.load(f)
+
+for feature in testWay['features']:
+    path = feature['geometry']['coordinates']
+finalPath = list(map(switchPosition, path))
+
+folium.plugins.AntPath(finalPath).add_to(map_SPM)
 
 # call to render Folium map in Streamlit
 st_data = st_folium(map_SPM, width=800, height=800)
