@@ -8,7 +8,8 @@ import json
 
 from streamlit_folium import st_folium
 
-store_list = ['Cineplex', 'Ardene', 'Safeway', "Urban Planet", "Dollarama"]
+store_list_2 = ['Cineplex', 'Ardene', 'Safeway', "Urban Planet", "Dollarama"]
+store_list = ['Cineplex', 'Safeway', "Dollarama"]
 STORE_LOCS = 'geodata/mall_data.geojson'
 
 SPM_Location = (53.53096649685565, -113.2936327376925)
@@ -31,12 +32,22 @@ option_end = st.selectbox(
     end_location)
 
 # render Stores on map
-folium.GeoJson(STORE_LOCS,
-               tooltip=folium.GeoJsonTooltip(fields=['name'])
-              ).add_to(map_SPM)
+# Load the GeoJSON file
+with open(STORE_LOCS) as f:
+    data = json.load(f)
+
+# Specify the name tags of the polygons you want to display
+desired_name_tags = [option_start, option_end]
+
+# Filter the features based on their properties
+filtered_features = [feature for feature in data['features'] if feature['properties']['name'] in desired_name_tags]
+# Add the filtered features to the map
+for feature in filtered_features:
+    folium.GeoJson(feature).add_to(map_SPM)
+
 
 # render path
-testGeoJson = 'geodata/paths/Cineplex_Safeway.geojson'
+testGeoJson = 'geodata/paths/' + option_start.replace(" ", "") + '_' + option_end.replace(" ", "") + '.geojson'
 
 def switchPosition(coordinate):
     coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
