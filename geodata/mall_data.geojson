@@ -157,6 +157,7 @@
         "payment:credit_cards": "yes",
         "payment:debit_cards": "yes",
         "phone": "+1-780-416-0152",
+        "shop": "movie theatre",
         "website": "https://www.cineplex.com/Theatre/cineplex-cinemas-sherwood-park"
       },
       "geometry": {
@@ -317,7 +318,7 @@
         "building": "yes",
         "indoor": "room",
         "name": "Dollarama",
-        "shop": "variety_store"
+        "shop": "variety store"
       },
       "geometry": {
         "type": "Polygon",

@@ -8,8 +8,7 @@ import json
 
 from streamlit_folium import st_folium
 
-store_list_2 = ['Cineplex', 'Ardene', 'Safeway', "Urban Planet", "Dollarama"]
-store_list = ['Cineplex', 'Safeway', "Dollarama"]
+store_list = ['Cineplex', 'Ardene', 'Safeway', "Urban Planet", "Dollarama"]
 STORE_LOCS = 'geodata/mall_data.geojson'
 reverse_antpath = False
 
@@ -43,12 +42,16 @@ desired_name_tags = [option_start, option_end]
 # Filter the features based on their properties
 filtered_features = [feature for feature in data['features'] if feature['properties']['name'] in desired_name_tags]
 # Add the filtered features to the map
+
 for feature in filtered_features:
-    folium.GeoJson(feature).add_to(map_SPM)
+    folium.GeoJson(feature, highlight_function= lambda feat: {'fillColor': 'blue'}, tooltip=folium.features.GeoJsonTooltip(fields=["name", "shop"], aliases=["Name:", "Type:"])).add_to(map_SPM)
 
 
 # render path
 path_file = 'geodata/paths/' + option_start.replace(" ", "") + '_' + option_end.replace(" ", "") + '.geojson'
+if not os.path.isfile(path_file):
+    path_file = 'geodata/paths/' + option_end.replace(" ", "") + '_' + option_start.replace(" ", "") + '.geojson'
+    reverse_antpath = True
 
 def switchPosition(coordinate):
     coordinate[0], coordinate[1] = coordinate[1], coordinate[0]
@@ -60,7 +63,10 @@ with open(path_file) as f:
 for feature in testWay['features']:
     path = feature['geometry']['coordinates']
 finalPath = list(map(switchPosition, path))
-finalPath.reverse()
+
+if reverse_antpath:
+    finalPath.reverse()
+
 folium.plugins.AntPath(finalPath).add_to(map_SPM)
 
 # call to render Folium map in Streamlit
