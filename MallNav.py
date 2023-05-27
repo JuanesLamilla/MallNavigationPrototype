@@ -79,6 +79,6 @@ st_data = st_folium(map_SPM, width=800, height=800)
 
 st.divider()
 st.caption('Choose a start and end location to show the best path through the Sherwood Park Mall to reach your destination.')
-st.caption('This proof-of-concept demonstrate how to use **:green[folium]** and **:green[streamlit]** to show geographic information (geojson) dynamically on an interactive dashboard. This page was created entirely in Python.')
-st.caption('Similar navigation dashboards can be easily created for hospitals, university campus\'s, and more.')
+st.caption('This proof-of-concept demonstrates how to use **:green[folium]** and **:green[streamlit]** to dynamically show geographic information (geojson) on an interactive dashboard. This page was created entirely in Python.')
+st.caption('Similar navigation dashboards can be easily created for hospitals, university campuses, and more.')
 st.caption('Code can be found on [github](https://github.com/JuanesLamilla/MallNavigationPrototype). You can also check out my [portfolio](https://juaneslamilla.github.io/).')
